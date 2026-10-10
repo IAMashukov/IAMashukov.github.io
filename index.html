@@ -249,6 +249,36 @@ Machine Learning and Autonomous Systems (ICMLAS),  (2026). <br />
   </section>
 
 
+
+    <section id="blog">
+    <h2>Blog / Updates</h2>
+    
+    <div class="project">
+      <p>Trying to solve the quadratic complexity of the attention bottleneck:</p>
+      
+      <p><a href="https://lnkd.in/eMgfk_8t" target="_blank" rel="noopener">https://lnkd.in/eMgfk_8t</a></p>
+      
+      <p>Patching and "transposing" made it to ICLR, but you either get channel-independent inputs or lose temporal evolution signal. There's been some work attempting to bridge the two.</p>
+      
+      <p>I am trying to join these by letting a patched "Time" specialist query the keys and values of the "transposed Feature" specialist, and vice versa.</p>
+      
+      <p>The resulting attention layers are:</p>
+      
+      <ul>
+        <li>\( O(P^2) \) - P patches attending to P patches (I am omitting the dimension of the embedding)</li>
+        <li>\( O(C^2) \) - C channels attending to C channels</li>
+        <li>\( O(P \times C) \) - P patches attending to C channels in the co-attention layer joining the two specialists.</li>
+      </ul>
+      
+      <p>As a result, you get a rectangular \( R^{P \times C} \) matrix.</p>
+      
+      <p>This significantly reduces the complexity when the number of sequence steps in the inputs to the Transformer (such as GPT, etc) is large, while producing feature and time-evolution aware representations.</p>
+    </div>
+  </section>
+    
+
+
+
   <section id="projects">
   <h2>Projects</h2>
   <div class="project">
